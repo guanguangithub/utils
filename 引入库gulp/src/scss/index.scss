@@ -1,0 +1,66 @@
+@import "_mixin.scss";
+@import "common.scss";
+.wrap {
+    width: 100%;
+    height: 100%;
+    @include box_flex;
+    @include direction(column);
+}
+
+section>div {
+    flex-shrink: 0;
+}
+
+section {
+    @include flex;
+    @include box_flex;
+    @include direction(column);
+}
+
+header {
+    width: 100%;
+    height: rem(44px);
+    line-height: rem(44px);
+    @include box_flex;
+    @include justify;
+    @include align;
+}
+
+footer {
+    width: 100%;
+    height: rem(59px);
+    @include box_flex;
+    @include justify;
+    @include align;
+    >dl {
+        width: 25%;
+        height: rem(59px);
+        @include box_flex;
+        @include direction(column);
+        @include justify;
+        @include align;
+        >dt {
+            text-align: center;
+            >i.iconfont {
+                font-size: rem(30px);
+                color: #777;
+            }
+        }
+        >dd {
+            width: 100%;
+            text-align: center;
+            font-size: rem(14px);
+            color: #444;
+        }
+    }
+    >dl.active {
+        >dt {
+            >i.iconfont {
+                color: #fce243;
+            }
+        }
+        >dd {
+            color: #fce243;
+        }
+    }
+}

@@ -1,0 +1,70 @@
+		//method:验证方法,指的是校验的逻辑
+		//
+		//.rule:验证规则,指的是元素和验证方法的关联
+
+		//定义规则选择name属性
+		var validator=$("#demoForm").validate({
+			debug:true,//只是校验不会提交
+			rules:{//配置项  规则
+				username:{
+					required:true,//必填
+					//minlength:2,//最小2
+					//maxlength:10,//最大长度
+					rangelength:[2,10],//长度范围  包含最小和最大
+					//remode:"reg.json"
+					email:true,
+					url:true,
+					data:true//2018-11-2直接用new Date进行转换
+					dataISO:true//标准格式的日期
+					number:true//-12345.456只要是数字就行
+					digits:true,整数
+					remode:{
+						url:'reg.json',
+						type:"post",//get
+						data:{
+							loginTime:function(){//登陆时间
+								return +new Date();//把字符转换为数字
+							}
+						}
+					}
+				},
+				password:{
+					required:true,//必填
+					minlength:2,//最小2
+					maxlength:10
+				},
+				"confirm-password":{
+					equalTo:"#password"//选择器
+				}
+			},
+			messages:{//提示信息
+				username:{
+					required:"必须填写用户名",//必填
+					minlength:"用户名最小为2为",//最小2
+					maxlength:"用户名最大为10为",
+					reangelength:"用户名应该在2-10位"
+					remode:"用户名不存在"
+				},
+				password:{
+					required:"必须填写用密码",//必填
+					minlength:"密码最小为2为",//最小2
+					maxlength:"密码最大为16为"
+				},
+				"confirm-password":{
+					equalTo:"密码不一致"//选择器
+				}
+			}
+		})
+	})
+
+	$("#check").click(function(){
+		//valid()返回布尔值
+		alert($("#demoForm").valid()?"一直":"错误")
+	})；
+
+	元素.rules()//表示检测元素的校验规则  只能针对元素
+
+	增加校验规则
+	元素.rules("add",{minlength:6,maxlength:10})
+	//删除校验规则
+	元素.rules("remove",{email,minlength,maxlength})
